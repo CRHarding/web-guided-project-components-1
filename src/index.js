@@ -95,11 +95,19 @@ function makePanel(panelData) {
   //   </div>
   // </div>
   // <!-- Remove this -->
-
+  panel.classList.add('panel');
+  panelBar.classList.add('panel-bar');
+  panelButtons.classList.add('panel-buttons');
+  openButton.classList.add('panel-btn-open');
+  closeButton.classList.add('panel-btn-close', 'hide-btn');
+  panelContent.classList.add('panel-content');
 
   // TASK 8- Set text content using arguments as raw material
   //  and also using the open and close arrows imported at the top of the file
-
+  panelTitle.textContent = panelData.title;
+  panelContent.textContent = panelData.content;
+  openButton.textContent = open;
+  closeButton.textContent = close;
 
   // TASK 9- When the 'open' or 'close' buttons are clicked, the content is toggled on/off:
   //  - the open button needs to go away (the 'hide-btn' class name controls this)
