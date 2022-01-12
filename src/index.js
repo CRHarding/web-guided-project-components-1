@@ -125,16 +125,54 @@ function makePanel(panelData) {
 
 // const testData = { title: 'foo', content: 'bar' };
 // const testPanel = makePanel(testData);
-const testPanel = makePanel({ title: 'foo', content: 'bar' });
-accordion.appendChild(testPanel);
+// const testPanel = makePanel({ title: 'foo', content: 'bar' });
+// accordion.appendChild(testPanel);
 
 // TASK 10- Loop through the panelData we imported from the data folder
 //  creating panels for each content and title and append them to the DOM.
 //  We can do this with a single forEach, or with a map and a forEach.
+const panelElems = panelData.map(data => {
+  return makePanel(data);
+})
 
+panelElems.forEach(elem => {
+  accordion.appendChild(elem);
+})
 
+panelData.forEach(data => {
+  const elem = makePanel(data);
+  accordion.appendChild(elem);
+})
+
+/**
+ * map => iterates over an array doing something with each value and returns a new array
+ * filter => iterates over an array and returns a new array with values that match a conditional
+ * reduce => iterates over an array and returns a singular value
+ */
 // [STRETCH] Comment out the links inside the nav and
 // write a linkMaker that takes { href, className, text }
 // and returns an anchor tag with the right href, class and textContent.
 // Loop over the 'linkData' in the data folder, generate anchor tags
 // and append them to the nav.
+
+{/* <a href="#" class="nav-item">Home</a>
+<a href="#" class="nav-item">About</a>
+<a href="#" class="nav-item">Blog</a>
+<a href="#" class="nav-item">Contact</a> */}
+
+function linkMaker({ href, className, text }) {
+  // const href = obj.href
+  // const className = obj.className;
+  // const text = obj.text;
+  const link = document.createElement('a');
+  link.href = href;
+  link.className = className;
+  link.textContent = text;
+  return link;
+}
+
+// document.body.prepend(linkMaker({ href: 'https://www.loremipsum.com', className: 'blah', text: 'blah'}));
+linkData.forEach(data => {
+  const linkElem = linkMaker(data);
+  document.querySelector('.main-nav').appendChild(linkElem);
+})
